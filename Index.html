@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ahmed Abdelhamid — AI Automation & Integration portfolio. n8n, RAG, AI agents, WhatsApp, Telegram and workflow automation.">
+  <title>Ahmed Abdelhamid — AI Automation & Integration</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    :root{
+      --bg:#070b12;
+      --bg2:#0b111c;
+      --card:rgba(15,23,36,.72);
+      --card-solid:#101827;
+      --text:#f5f7fb;
+      --muted:#93a0b4;
+      --line:rgba(255,255,255,.09);
+      --accent:#64d8ff;
+      --accent2:#8b7cff;
+      --green:#63e6be;
+      --shadow:0 24px 70px rgba(0,0,0,.28);
+      --radius:22px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;scroll-padding-top:90px}
+    body{
+      background:
+        radial-gradient(circle at 80% 5%, rgba(100,216,255,.09), transparent 28%),
+        radial-gradient(circle at 10% 25%, rgba(139,124,255,.07), transparent 30%),
+        var(--bg);
+      color:var(--text);
+      font-family:"Cairo",sans-serif;
+      line-height:1.75;
+      overflow-x:hidden;
+    }
+    body::before{
+      content:"";position:fixed;inset:0;pointer-events:none;opacity:.035;
+      background-image:linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px),
+                       linear-gradient(90deg,rgba(255,255,255,.5) 1px,transparent 1px);
+      background-size:55px 55px;
+      mask-image:linear-gradient(to bottom,black,transparent 75%);
+    }
+    a{color:inherit;text-decoration:none}
+    .container{width:min(var(--max),calc(100% - 40px));margin:auto}
+
+    /* NAV */
+    nav{position:fixed;z-index:1000;top:14px;left:0;right:0;}
+    .nav{
+      width:min(var(--max),calc(100% - 30px));margin:auto;
+      height:64px;padding:0 18px;
+      display:flex;align-items:center;justify-content:space-between;
+      border:1px solid var(--line);
+      background:rgba(7,11,18,.72);
+      backdrop-filter:blur(18px);
+      border-radius:18px;
+      box-shadow:0 12px 35px rgba(0,0,0,.18);
+    }
+    .brand{display:flex;align-items:center;gap:11px;font-weight:800}
+    .brand-mark{
+      width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
+      color:#071018;background:linear-gradient(135deg,var(--accent),#fff);
+      font-weight:900;
+    }
+    .brand span:last-child{font-family:Inter,sans-serif;letter-spacing:-.3px}
+    .nav-links{display:flex;gap:8px;list-style:none}
+    .nav-links a{
+      color:var(--muted);padding:8px 13px;border-radius:10px;font-size:.88rem;font-weight:600;
+      transition:.25s;
+    }
+    .nav-links a:hover{color:var(--text);background:rgba(255,255,255,.06)}
+    .nav-cta{
+      display:inline-flex;align-items:center;gap:8px;padding:9px 15px;border-radius:11px;
+      background:#f5f7fb;color:#081018;font-size:.86rem;font-weight:800;
+      transition:.25s;
+    }
+    .nav-cta:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(255,255,255,.12)}
+    .menu-btn{display:none;background:none;border:0;color:var(--text);font-size:1.2rem}
+
+    /* HERO */
+    .hero{min-height:100vh;display:flex;align-items:center;padding:145px 0 90px;position:relative}
+    .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:70px;align-items:center;direction:ltr;}
+    .hero-copy{direction:rtl}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:9px;padding:7px 12px;border:1px solid rgba(100,216,255,.2);
+      background:rgba(100,216,255,.06);border-radius:999px;color:var(--accent);
+      font-size:.78rem;font-weight:700;margin-bottom:22px;
+    }
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 14px var(--green)}
+    h1{font-size:clamp(2.8rem,6vw,5.3rem);line-height:1.05;letter-spacing:-2px;font-weight:800;margin-bottom:24px;}
+    h1 .gradient{
+      background:linear-gradient(100deg,var(--accent),#b7aaff 65%,#fff);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .hero-text{max-width:680px;color:var(--muted);font-size:1.08rem;line-height:2}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+    .btn{
+      display:inline-flex;align-items:center;gap:9px;padding:12px 18px;border-radius:13px;
+      font-weight:800;font-size:.9rem;border:1px solid var(--line);transition:.25s;cursor:pointer;
+    }
+    .btn-primary{background:linear-gradient(135deg,#f8fafc,#dce7f3);color:#081018;border:0}
+    .btn-secondary{background:rgba(255,255,255,.035);color:var(--text)}
+    .btn:hover{transform:translateY(-3px)}
+    .hero-contact{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px;color:var(--muted);font-size:.83rem}
+    .hero-contact a:hover{color:var(--accent)}
+
+    .hero-visual{direction:ltr;position:relative}
+    .terminal{
+      border:1px solid var(--line);background:rgba(12,18,29,.86);border-radius:24px;
+      box-shadow:var(--shadow);overflow:hidden;transform:rotate(1.5deg);
+    }
+    .terminal-top{height:44px;display:flex;align-items:center;gap:7px;padding:0 16px;border-bottom:1px solid var(--line)}
+    .terminal-top i{width:8px;height:8px;border-radius:50%;background:#5b6677}
+    .terminal-title{margin-left:auto;color:#657286;font:500 .7rem Inter,sans-serif}
+    .terminal-body{padding:26px;font:500 .78rem/2 Inter,monospace;color:#aeb9ca}
+    .code-line{white-space:nowrap}
+    .kw{color:#c6a6ff}.fn{color:#67d9ff}.str{color:#7ee787}.key{color:#ffcc7a}
+    .terminal-footer{margin-top:18px;padding-top:17px;border-top:1px solid var(--line);display:flex;gap:8px;flex-wrap:wrap}
+    .mini-tag{font:600 .68rem Inter,sans-serif;color:#8d9aad;border:1px solid var(--line);padding:5px 8px;border-radius:7px}
+    .glow{position:absolute;width:280px;height:280px;background:rgba(100,216,255,.12);filter:blur(90px);border-radius:50%;z-index:-1;right:-60px;top:-50px}
+
+    /* COMMON */
+    section{padding:105px 0}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:42px}
+    .kicker{font:700 .72rem Inter,sans-serif;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+    .section-title{font-size:clamp(1.9rem,4vw,2.65rem);line-height:1.2;font-weight:800}
+    .section-desc{max-width:540px;color:var(--muted);font-size:.92rem}
+
+    /* STATS */
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .stat{padding:25px;border:1px solid var(--line);background:rgba(255,255,255,.025);border-radius:18px;transition:.25s;}
+    .stat:hover{transform:translateY(-4px);border-color:rgba(100,216,255,.25)}
+    .stat-icon{color:var(--accent);font-size:1rem;margin-bottom:20px}
+    .stat strong{display:block;font:800 1.5rem Inter,sans-serif;margin-bottom:6px}
+    .stat span{font-size:.78rem;color:var(--muted)}
+
+    /* PROJECTS */
+    .projects{display:grid;gap:22px}
+    .project{
+      display:grid;grid-template-columns:43% 57%;direction:ltr;
+      border:1px solid var(--line);background:linear-gradient(145deg,rgba(18,27,42,.9),rgba(10,15,24,.82));
+      border-radius:24px;overflow:hidden;min-height:390px;transition:.3s;
+    }
+    .project:hover{border-color:rgba(100,216,255,.28);box-shadow:0 20px 55px rgba(0,0,0,.18)}
+    .project:nth-child(even){grid-template-columns:57% 43%}
+    .project:nth-child(even) .project-media{order:2}
+    .project-media{
+      min-height:360px;position:relative;display:flex;align-items:center;justify-content:center;
+      padding:20px;background:radial-gradient(circle at 50% 35%,rgba(100,216,255,.12),transparent 40%),#080d16;
+      border-right:1px solid var(--line);
+    }
+    .project:nth-child(even) .project-media{border-right:0;border-left:1px solid var(--line)}
+    .browser{
+      width:92%;border:1px solid var(--line);border-radius:15px;overflow:hidden;
+      background:#0d1420;box-shadow:0 20px 40px rgba(0,0,0,.35);
+    }
+    .browser-bar{height:30px;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 10px;gap:5px}
+    .browser-bar b{width:6px;height:6px;background:#657286;border-radius:50%}
+    
+    /* Mockup Video Styling */
+    .mock-video-container {
+      width: 100%; height: 260px; background: #000; display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .mock-video-container video {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+
+    .mock-ui{padding:22px;min-height:205px}
+    .mock-title{height:12px;width:55%;background:#526176;border-radius:8px;margin-bottom:18px}
+    .mock-row{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+    .mock-card{height:60px;border:1px solid var(--line);border-radius:9px;background:rgba(255,255,255,.025)}
+    .mock-chat{display:flex;flex-direction:column;gap:9px}
+    .bubble{height:30px;border-radius:9px;background:rgba(100,216,255,.11);width:72%}
+    .bubble:nth-child(2){width:54%;background:rgba(139,124,255,.12);align-self:flex-end}
+    .bubble:nth-child(3){width:80%}
+    .media-label{position:absolute;bottom:12px;color:#657286;font-size:.7rem}
+    
+    .project-body{direction:rtl;padding:35px;display:flex;flex-direction:column;justify-content:space-between}
+    .project-num{font:700 .7rem Inter,sans-serif;color:#536176;letter-spacing:1px}
+    .project h3{font-size:1.5rem;margin:8px 0 5px}
+    .project-sub{color:var(--accent);font-size:.8rem;font-weight:700;margin-bottom:14px}
+    .project p{color:var(--muted);font-size:.87rem;line-height:1.95}
+    .features{list-style:none;margin:18px 0 20px;display:grid;gap:7px}
+    .features li{font-size:.78rem;color:#c1c9d5}
+    .features li::before{content:"✓";color:var(--green);font-weight:800;margin-left:8px}
+    .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;margin-bottom:15px}
+    .tag{font:600 .67rem Inter,sans-serif;color:#aeb9ca;padding:5px 8px;border:1px solid var(--line);border-radius:7px;background:rgba(255,255,255,.025)}
+    
+    .project-actions { margin-top: 10px; }
+    .btn-blueprint {
+      background: rgba(100, 216, 255, 0.08); border: 1px solid rgba(100, 216, 255, 0.25); color: var(--accent);
+      padding: 9px 15px; border-radius: 10px; font-size: 0.8rem; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; transition: 0.25s;
+    }
+    .btn-blueprint:hover { background: var(--accent); color: #070b12; border-color: var(--accent); }
+
+    /* SERVICES & PROCESS */
+    .services{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .service{padding:25px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.025);transition:.25s}
+    .service:hover{transform:translateY(-4px);background:rgba(255,255,255,.04)}
+    .service i{font-size:1.35rem;color:var(--accent);margin-bottom:18px}
+    .service h3{font-size:1rem;margin-bottom:8px}
+    .service p{color:var(--muted);font-size:.78rem;line-height:1.9}
+
+    .process{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .step{position:relative;padding:24px;border-top:1px solid var(--line)}
+    .step-no{font:800 1.7rem Inter,sans-serif;color:#334055;margin-bottom:16px}
+    .step h3{font-size:.95rem;margin-bottom:8px}
+    .step p{color:var(--muted);font-size:.77rem}
+
+    /* CTA & FOOTER */
+    .cta{
+      padding:50px;border:1px solid rgba(100,216,255,.16);border-radius:26px;
+      background:radial-gradient(circle at 15% 50%,rgba(100,216,255,.10),transparent 35%),radial-gradient(circle at 85% 50%,rgba(139,124,255,.10),transparent 35%),rgba(255,255,255,.025);
+      display:flex;align-items:center;justify-content:space-between;gap:30px;
+    }
+    .cta h2{font-size:1.8rem;margin-bottom:8px}
+    .cta p{color:var(--muted);font-size:.86rem}
+    .cta-actions{display:flex;gap:10px;flex-wrap:wrap}
+
+    footer{padding:30px 0 45px;border-top:1px solid var(--line);margin-top:80px}
+    .footer-inner{display:flex;justify-content:space-between;gap:20px;align-items:center;color:#68758a;font-size:.72rem}
+    .socials{display:flex;gap:9px}
+    .socials a{width:34px;height:34px;border:1px solid var(--line);border-radius:9px;display:grid;place-items:center;transition:.2s}
+    .socials a:hover{color:var(--accent);border-color:rgba(100,216,255,.3)}
+
+    /* MODAL SYSTEM (REUSABLE) */
+    .modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(7, 11, 18, 0.94); backdrop-filter: blur(12px); }
+    .modal-wrapper { width: 92%; max-width: 1250px; margin: 2% auto; display: flex; flex-direction: column; height: 88vh; position: relative; }
+    .close-btn { position: absolute; top: -10px; right: 0; color: #fff; font-size: 32px; font-weight: bold; cursor: pointer; z-index: 10; opacity: 0.8; transition: 0.2s; }
+    .close-btn:hover { opacity: 1; color: var(--accent); }
+    
+    .modal-tabs { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 14px; padding-right: 30px; }
+    .tab-btn { background: rgba(255,255,255,0.06); border: 1px solid var(--line); color: var(--muted); padding: 7px 15px; border-radius: 20px; cursor: pointer; font-size: 0.8rem; font-weight: 600; font-family: "Cairo", sans-serif; transition: 0.3s; }
+    .tab-btn.active, .tab-btn:hover { background: var(--accent); color: #070b12; border-color: var(--accent); box-shadow: 0 0 15px rgba(100, 216, 255, 0.3); }
+
+    .image-container { flex: 1; overflow: auto; display: flex; align-items: center; justify-content: center; background: #0c121d; border-radius: 16px; border: 1px solid var(--line); padding: 15px; }
+    .image-container img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; }
+    .caption { text-align: center; color: var(--muted); padding-top: 10px; font-size: 0.85rem; direction: rtl; }
+
+    @media(max-width:950px){
+      .nav-links{display:none}.menu-btn{display:block}.nav-cta{display:none}
+      .hero-grid{grid-template-columns:1fr;gap:45px}.hero{padding-top:130px}.hero-visual{max-width:650px}
+      .stats,.services{grid-template-columns:repeat(2,1fr)}
+      .project,.project:nth-child(even){grid-template-columns:1fr}.project:nth-child(even) .project-media{order:0}
+      .project-media,.project:nth-child(even) .project-media{border:0;border-bottom:1px solid var(--line)}
+      .process{grid-template-columns:repeat(2,1fr)}
+      .cta{flex-direction:column;align-items:flex-start}
+    }
+    @media(max-width:600px){
+      .container{width:min(var(--max),calc(100% - 26px))}
+      nav{top:8px}.nav{width:calc(100% - 16px);height:58px}
+      h1{font-size:2.55rem;letter-spacing:-1px}.hero-text{font-size:.94rem}
+      section{padding:75px 0}.section-head{display:block}.section-desc{margin-top:13px}
+      .stats,.services,.process{grid-template-columns:1fr}
+      .project-body{padding:25px}.project-media{min-height:285px}
+      .cta{padding:30px}.cta h2{font-size:1.45rem}
+      .footer-inner{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="nav">
+      <a href="#" class="brand">
+        <span class="brand-mark">A</span>
+        <span>Ahmed Abdelhamid</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">نبذة</a></li>
+        <li><a href="#projects">المشاريع</a></li>
+        <li><a href="#services">الخدمات</a></li>
+        <li><a href="#process">طريقة العمل</a></li>
+      </ul>
+      <a class="nav-cta" href="#contact"><i class="fa-regular fa-paper-plane"></i> تواصل معي</a>
+      <button class="menu-btn" aria-label="فتح القائمة"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="dot"></span> AI Automation & Integration</div>
+          <h1>أحوّل المهام المتكررة إلى <span class="gradient">أنظمة ذكية</span>.</h1>
+          <p class="hero-text">
+            أبني حلول أتمتة عملية تربط الذكاء الاصطناعي بالـ APIs وقواعد البيانات وقنوات التواصل،
+            من workflows في n8n إلى RAG وAI Agents — بهدف تقليل العمل اليدوي وتحسين سير العمليات.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects"><i class="fa-solid fa-arrow-down"></i> شوف المشاريع</a>
+            <a class="btn btn-secondary" href="https://www.linkedin.com/in/ahmed-abdelhamid15" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
+          </div>
+          <div class="hero-contact">
+            <a href="mailto:asbany103@gmail.com"><i class="fa-regular fa-envelope"></i> asbany103@gmail.com</a>
+            <a href="https://wa.me/201021804181" target="_blank" rel="noopener" dir="ltr"><i class="fa-brands fa-whatsapp"></i> +20 102 180 4181</a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <span class="glow"></span>
+          <div class="terminal">
+            <div class="terminal-top">
+              <i></i><i></i><i></i>
+              <span class="terminal-title">automation.workflow</span>
+            </div>
+            <div class="terminal-body">
+              <div class="code-line"><span class="kw">const</span> workflow = {</div>
+              <div class="code-line">&nbsp;&nbsp;<span class="key">trigger</span>: <span class="str">"WhatsApp / Telegram"</span>,</div>
+              <div class="code-line">&nbsp;&nbsp;<span class="key">ai</span>: <span class="str">"RAG + Agents"</span>,</div>
+              <div class="code-line">&nbsp;&nbsp;<span class="key">automation</span>: <span class="fn">"n8n"</span>,</div>
+              <div class="code-line">&nbsp;&nbsp;<span class="key">integrations</span>: [<span class="str">"APIs"</span>, <span class="str">"Sheets"</span>, <span class="str">"DB"</span>],</div>
+              <div class="code-line">&nbsp;&nbsp;<span class="key">result</span>: <span class="str">"less manual work"</span></div>
+              <div class="code-line">};</div>
+              <div class="terminal-footer">
+                <span class="mini-tag">n8n</span><span class="mini-tag">RAG</span><span class="mini-tag">AI Agents</span><span class="mini-tag">APIs</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="kicker">01 — About</div><h2 class="section-title">خبرة مبنية على أنظمة حقيقية</h2></div>
+          <p class="section-desc">تركيزي ليس على إضافة AI لمجرد الإضافة؛ بل على تصميم workflow واضح، قابل للصيانة، ومربوط بمصادر البيانات الفعلية.</p>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="stat-icon"><i class="fa-solid fa-diagram-project"></i></div><strong>68+ Nodes</strong><span>Architecture لمشروع Nexus Health</span></div>
+          <div class="stat"><div class="stat-icon"><i class="fa-solid fa-robot"></i></div><strong>AI Agents</strong><span>وكلاء متخصصون لمهام مختلفة</span></div>
+          <div class="stat"><div class="stat-icon"><i class="fa-solid fa-database"></i></div><strong>RAG + Vector DB</strong><span>ربط المعرفة بمصادر قابلة للتحقق</span></div>
+          <div class="stat"><div class="stat-icon"><i class="fa-solid fa-plug"></i></div><strong>API Integration</strong><span>WhatsApp, Telegram, Gmail, Sheets وغيرها</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="kicker">02 — Selected Work</div><h2 class="section-title">مشاريع مختارة</h2></div>
+          <p class="section-desc">نماذج من الأنظمة والأتمتة التي تم تصميمها لتنفذ خطوات فعلية، وليس مجرد chatbot للعرض.</p>
+        </div>
+
+        <div class="projects">
+
+          <!-- PROJECT 01: KROKETT ASSISTANT (UPDATED WITH MOCKUP & DETAILED MODAL) -->
+          <article class="project">
+            <div class="project-media">
+              <div class="browser">
+                <div class="browser-bar"><b></b><b></b><b></b></div>
+                <div class="mock-video-container">
+                  <video autoplay loop muted playsinline poster="assets/projects/krokett/krokett-full.png">
+                    <source src="assets/projects/krokett/krokett-mockup.mp4" type="video/mp4">
+                    متصفحك لا يدعم تشغيل الفيديو.
+                  </video>
+                </div>
+              </div>
+              <span class="media-label">Krokett Assistant — Live Demo</span>
+            </div>
+            <div class="project-body">
+              <div>
+                <span class="project-num">01 / E-COMMERCE & RAG</span>
+                <h3>Krokett Assistant</h3>
+                <div class="project-sub">مساعد طلبات المطاعم الذكي (34 Nodes)</div>
+                <p>بوت مبيعات ومساعد طلبات تفاعلي عبر Telegram معالَج بالـ AI والـ Voice Recognition، يستخرج المنيو والأسعار تلقائياً عبر RAG Engine، ويجمع تفاصيل الطلب والتوصيل ويحفظ الفواتير.</p>
+                <ul class="features">
+                  <li>استقبال وتحليل الفويسات الصوتية للعملاء</li>
+                  <li>ربط قاعدة المعرفة والمنيو عبر Vector Database (Pinecone)</li>
+                  <li>حساب التكلفة وتأكيد الطلب وإرسال التنبيهات تلقائياً</li>
+                </ul>
+              </div>
+              <div>
+                <div class="tags">
+                  <span class="tag">34 Nodes</span>
+                  <span class="tag">n8n</span>
+                  <span class="tag">RAG / Pinecone</span>
+                  <span class="tag">Gemini API</span>
+                  <span class="tag">Telegram API</span>
+                </div>
+                <div class="project-actions">
+                  <button class="btn-blueprint" onclick="openModal('krokett-modal')">
+                    <i class="fa-solid fa-sitemap"></i> عرض المخطط الهيكلي (Workflow Canvas)
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 02: PREAUTH MIND -->
+          <article class="project">
+            <div class="project-media">
+              <div class="browser">
+                <div class="browser-bar"><b></b><b></b><b></b></div>
+                <div class="mock-ui">
+                  <div class="mock-title"></div>
+                  <div class="mock-chat"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span></div>
+                </div>
+              </div>
+              <span class="media-label">PreAuth Mind — system preview</span>
+            </div>
+            <div class="project-body">
+              <div>
+                <span class="project-num">02 / MULTI-AGENT</span>
+                <h3>PreAuth Mind</h3>
+                <div class="project-sub">نظام التدقيق والتأمين الطبي الآلي</div>
+                <p>نظام متعدد الوكلاء يتعامل مع طلبات الموافقة المسبقة القادمة عبر البريد، يستخرج البيانات ويقارنها بقواعد المعرفة المخزنة في Vector Store ثم يجهز نتيجة المراجعة.</p>
+                <ul class="features">
+                  <li>استخراج بيانات الطلب من Gmail</li>
+                  <li>مراجعة الطلب مقابل قواعد الموافقات</li>
+                  <li>إخراج قرار منظم مع سبب المراجعة</li>
+                </ul>
+              </div>
+              <div class="tags"><span class="tag">n8n</span><span class="tag">Multi-Agent</span><span class="tag">Vector Store</span><span class="tag">Gmail API</span></div>
+            </div>
+          </article>
+
+          <!-- PROJECT 03: NEXUS HEALTH -->
+          <article class="project">
+            <div class="project-media">
+              <div class="browser">
+                <div class="browser-bar"><b></b><b></b><b></b></div>
+                <div class="mock-ui">
+                  <div class="mock-title"></div>
+                  <div class="mock-row"><div class="mock-card"></div><div class="mock-card"></div><div class="mock-card"></div><div class="mock-card"></div></div>
+                </div>
+              </div>
+              <span class="media-label">Nexus Health — workflow architecture</span>
+            </div>
+            <div class="project-body">
+              <div>
+                <span class="project-num">03 / HEALTHCARE</span>
+                <h3>Nexus Health</h3>
+                <div class="project-sub">منظومة أتمتة للمراكز الطبية</div>
+                <p>منظومة موسعة لإدارة التفاعل مع المرضى وربط قنوات التواصل والحجز والمتابعة داخل workflow واحد.</p>
+                <ul class="features">
+                  <li>فرز وتوجيه أولي للحالات</li>
+                  <li>تكامل حجز المواعيد عبر Cal.com</li>
+                  <li>رسائل متابعة وتذكير عبر WhatsApp</li>
+                </ul>
+              </div>
+              <div class="tags"><span class="tag">68+ Nodes</span><span class="tag">n8n</span><span class="tag">Cal.com</span><span class="tag">WhatsApp API</span></div>
+            </div>
+          </article>
+
+          <!-- PROJECT 04: ELITE DENTAL -->
+          <article class="project">
+            <div class="project-media">
+              <div class="browser">
+                <div class="browser-bar"><b></b><b></b><b></b></div>
+                <div class="mock-ui">
+                  <div class="mock-title"></div>
+                  <div class="mock-chat"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span></div>
+                </div>
+              </div>
+              <span class="media-label">Dental assistant — RAG flow</span>
+            </div>
+            <div class="project-body">
+              <div>
+                <span class="project-num">04 / RAG</span>
+                <h3>Elite Dental Clinic</h3>
+                <div class="project-sub">مساعد عيادة أسنان بالـ RAG</div>
+                <p>مساعد محادثة يعتمد على قاعدة معرفة يتم تحديثها من ملفات العيادة، ليجيب عن الخدمات والأسعار والمعلومات المتاحة داخل المصدر.</p>
+                <ul class="features">
+                  <li>مزامنة الملفات من Google Drive / Sheets</li>
+                  <li>تحديث قاعدة المعرفة في Vector DB</li>
+                  <li>إجابات مبنية على سياق المصدر</li>
+                </ul>
+              </div>
+              <div class="tags"><span class="tag">RAG</span><span class="tag">Pinecone</span><span class="tag">Google Drive</span><span class="tag">Telegram</span></div>
+            </div>
+          </article>
+
+          <!-- PROJECT 05: HR NINJA -->
+          <article class="project">
+            <div class="project-media">
+              <div class="browser">
+                <div class="browser-bar"><b></b><b></b><b></b></div>
+                <div class="mock-ui">
+                  <div class="mock-title"></div>
+                  <div class="mock-row"><div class="mock-card"></div><div class="mock-card"></div></div>
+                </div>
+              </div>
+              <span class="media-label">HR Ninja — automation preview</span>
+            </div>
+            <div class="project-body">
+              <div>
+                <span class="project-num">05 / HR AUTOMATION</span>
+                <h3>HR Ninja Assistant</h3>
+                <div class="project-sub">أتمتة طلبات الموظفين والإجازات</div>
+                <p>نظام يتعامل مع طلبات الموظفين عبر قنوات المحادثة، ويتحقق من البيانات قبل تسجيل العمليات في قاعدة البيانات.</p>
+                <ul class="features">
+                  <li>التحقق من هوية الموظف قبل تنفيذ الطلب</li>
+                  <li>معالجة وتسجيل طلبات الإجازات</li>
+                  <li>ربط WhatsApp وTelegram عبر API</li>
+                </ul>
+              </div>
+              <div class="tags"><span class="tag">Evolution API</span><span class="tag">WhatsApp</span><span class="tag">n8n</span><span class="tag">Google Sheets</span></div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="kicker">03 — Services</div><h2 class="section-title">إيه اللي أقدر أبنيه؟</h2></div>
+          <p class="section-desc">الخدمة تبدأ من فهم العملية الحالية، ثم تصميم الأتمتة وربط الأدوات المطلوبة، وليس من اختيار أداة AI أولاً.</p>
+        </div>
+        <div class="services">
+          <div class="service"><i class="fa-solid fa-diagram-project"></i><h3>n8n Workflows</h3><p>تصميم workflows وربط Webhooks وAPIs وقواعد البيانات والخدمات المختلفة.</p></div>
+          <div class="service"><i class="fa-solid fa-brain"></i><h3>RAG & Knowledge Bases</h3><p>تحويل ملفات ومصادر العمل إلى قاعدة معرفة قابلة للاسترجاع داخل تطبيقات AI.</p></div>
+          <div class="service"><i class="fa-solid fa-robot"></i><h3>AI Agents</h3><p>تصميم وكلاء متخصصين لتنفيذ مهام محددة مع validation وstructured outputs.</p></div>
+          <div class="service"><i class="fa-solid fa-comments"></i><h3>WhatsApp & Telegram</h3><p>بناء تجارب محادثة للأوردرات والحجوزات وخدمة العملاء والعمليات الداخلية.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="kicker">04 — Process</div><h2 class="section-title">طريقة الشغل</h2></div>
+          <p class="section-desc">من المشكلة إلى workflow قابل للاستخدام، بخطوات واضحة بدل التعقيد غير الضروري.</p>
+        </div>
+        <div class="process">
+          <div class="step"><div class="step-no">01</div><h3>Understand</h3><p>فهم العملية الحالية ونقاط الهدر والأدوات المستخدمة.</p></div>
+          <div class="step"><div class="step-no">02</div><h3>Design</h3><p>رسم الـ workflow وتحديد البيانات والـ integrations المطلوبة.</p></div>
+          <div class="step"><div class="step-no">03</div><h3>Build</h3><p>تنفيذ الأتمتة وربط AI وAPIs وقواعد البيانات.</p></div>
+          <div class="step"><div class="step-no">04</div><h3>Validate</h3><p>اختبار الحالات المختلفة والتأكد من صحة البيانات والمخرجات.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="cta">
+          <div>
+            <div class="kicker">05 — Contact</div>
+            <h2>عندك عملية متكررة؟ خلّيها workflow.</h2>
+            <p>لو عندك فكرة أتمتة أو عملية بتاخد وقت من فريقك، ابعتلي التفاصيل ونبدأ من المشكلة نفسها.</p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-primary" href="mailto:asbany103@gmail.com"><i class="fa-regular fa-envelope"></i> Email</a>
+            <a class="btn btn-secondary" href="https://wa.me/201021804181" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+            <a class="btn btn-secondary" href="https://www.linkedin.com/in/ahmed-abdelhamid15" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© 2026 Ahmed Abdelhamid · AI Automation & Integration</div>
+      <div class="socials">
+        <a href="mailto:asbany103@gmail.com" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+        <a href="https://wa.me/201021804181" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://www.linkedin.com/in/ahmed-abdelhamid15" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================== -->
+  <!-- MODAL: KROKETT ASSISTANT WORKFLOW CANVAS -->
+  <!-- ========================================== -->
+  <div id="krokett-modal" class="modal">
+    <div class="modal-wrapper">
+      <span class="close-btn" onclick="closeModal('krokett-modal')">&times;</span>
+      
+      <div class="modal-tabs">
+        <button class="tab-btn active" onclick="switchCanvas('krokett-img', 'assets/projects/krokett/krokett-full.png', 'المخطط الهيكلي الشامل للمشروع (34 Nodes)', 'krokett-caption', this)">🌐 المخطط الكامل</button>
+        <button class="tab-btn" onclick="switchCanvas('krokett-img', 'assets/projects/krokett/Trigger.png', 'جزء استقبال الرسائل وفك التشفير الصوتي (Telegram Triggers)', 'krokett-caption', this)">⚡ 1. الاستقبال والصوت</button>
+        <button class="tab-btn" onclick="switchCanvas('krokett-img', 'assets/projects/krokett/Message Routing.png', 'منطق توجيه المسارات والاستعلامات (Message Routing)', 'krokett-caption', this)">🔀 2. توجيه المسارات</button>
+        <button class="tab-btn" onclick="switchCanvas('krokett-img', 'assets/projects/krokett/Order Processing & AI.png', 'محرك الذكاء الاصطناعي وربط الـ RAG (Gemini + Pinecone)', 'krokett-caption', this)">🧠 3. محرك الذكاء الاصطناعي</button>
+        <button class="tab-btn" onclick="switchCanvas('krokett-img', 'assets/projects/krokett/Message Confirmation.png', 'تسجيل الطلبات وإرسال التنبيهات (Google Sheets + Notifications)', 'krokett-caption', this)">✅ 4. التأكيد والتخزين</button>
+      </div>
+
+      <div class="image-container">
+        <img id="krokett-img" src="assets/projects/krokett/krokett-full.png" alt="n8n Architecture Blueprint">
+      </div>
+      
+      <div id="krokett-caption" class="caption">المخطط الهيكلي الشامل للمشروع (34 Nodes)</div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- TEMPLATE MODAL: FOR FUTURE PROJECTS       -->
+  <!-- (Uncomment and duplicate for Project 2, 3) -->
+  <!-- ========================================== -->
+  <!--
+  <div id="futureproject-modal" class="modal">
+    <div class="modal-wrapper">
+      <span class="close-btn" onclick="closeModal('futureproject-modal')">&times;</span>
+      <div class="modal-tabs">
+        <button class="tab-btn active" onclick="switchCanvas('future-img', 'assets/projects/futureproject/full.png', 'المخطط الشامل للمشروع', 'future-caption', this)">🌐 المخطط الكامل</button>
+      </div>
+      <div class="image-container">
+        <img id="future-img" src="assets/projects/futureproject/full.png" alt="Workflow Blueprint">
+      </div>
+      <div id="future-caption" class="caption">المخطط الهيكلي الشامل</div>
+    </div>
+  </div>
+  -->
+
+  <!-- SCRIPT FOR MODALS & TAB SWITCHING -->
+  <script>
+    function openModal(modalId) {
+      document.getElementById(modalId).style.display = "block";
+      document.body.style.overflow = "hidden"; // Prevent scrolling when modal is open
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+
+    function switchCanvas(imgId, imgSrc, captionText, captionId, btn) {
+      document.getElementById(imgId).src = imgSrc;
+      document.getElementById(captionId).innerText = captionText;
+      
+      let buttons = btn.parentElement.getElementsByClassName('tab-btn');
+      for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove('active');
+      }
+      btn.classList.add('active');
+    }
+
+    // Close modal when clicking outside the container box
+    window.onclick = function(event) {
+      if (event.target.classList.contains('modal')) {
+        event.target.style.display = "none";
+        document.body.style.overflow = "auto";
+      }
+    };
+  </script>
+</body>
+</html>
