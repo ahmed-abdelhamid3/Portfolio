@@ -8,7 +8,6 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- تحسين تحميل الخطوط مع display=swap -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
@@ -164,25 +163,45 @@
     .project:nth-child(even) .project-media{order:2}
     .project-media{
       min-height:360px;position:relative;display:flex;align-items:center;justify-content:center;
-      padding:20px;background:radial-gradient(circle at 50% 35%,rgba(100,216,255,.12),transparent 40%),#080d16;
-      border-right:1px solid var(--line);
+      padding:15px;background:#070b12;border-right:1px solid var(--line);
     }
     .project:nth-child(even) .project-media{border-right:0;border-left:1px solid var(--line)}
     .browser{
-      width:95%;border:1px solid var(--line);border-radius:15px;overflow:hidden;
-      background:#0d1420;box-shadow:0 20px 40px rgba(0,0,0,.35);
+      width:100%;height:100%;border:1px solid var(--line);border-radius:15px;overflow:hidden;
+      background:#070b12;box-shadow:0 20px 40px rgba(0,0,0,.35);display:flex;flex-direction:column;
     }
-    .browser-bar{height:30px;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 10px;gap:5px}
+    .browser-bar{height:30px;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 10px;gap:5px;background:#0d1420;}
     .browser-bar b{width:6px;height:6px;background:#657286;border-radius:50%}
     
-    .mock-video-container {
-      width: 100%; height: 310px; background: #070b12; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 10px;
+    /* MOVIE / CHAT DISPLAY WITHOUT BLACK BORDERS AND WITHOUT KEYBOARD */
+    .custom-chat-display {
+      flex: 1; background: #080e18; display: flex; flex-direction: column; overflow: hidden; position: relative;
     }
-    .mock-video-container video {
-      max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px;
+    .chat-header-bar {
+      padding: 10px 14px; background: #111a2a; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 10px;
+    }
+    .chat-header-bar img { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
+    .chat-header-info { display: flex; flex-direction: column; }
+    .chat-header-info strong { font-size: 0.85rem; color: #fff; }
+    .chat-header-info span { font-size: 0.68rem; color: var(--green); }
+    
+    .chat-messages-container {
+      flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; font-family: 'Cairo', sans-serif;
+    }
+    .chat-bubble {
+      max-width: 88%; padding: 10px 14px; border-radius: 14px; font-size: 0.95rem; line-height: 1.5; font-weight: 500;
+    }
+    .chat-bubble.bot {
+      background: rgba(255,255,255,0.06); border: 1px solid var(--line); color: #e2e8f0; align-self: flex-start; border-bottom-left-radius: 2px;
+    }
+    .chat-bubble.user {
+      background: rgba(100,216,255,0.18); border: 1px solid rgba(100,216,255,0.35); color: #fff; align-self: flex-end; border-bottom-right-radius: 2px;
+    }
+    .chat-bubble .voice-note {
+      display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--accent);
     }
 
-    .media-label{position:absolute;bottom:12px;color:#657286;font-size:.7rem}
+    .media-label{position:absolute;bottom:8px;color:#657286;font-size:.68rem;background:rgba(7,11,18,.8);padding:2px 8px;border-radius:4px;}
     
     .project-body{direction:rtl;padding:35px;display:flex;flex-direction:column;justify-content:space-between}
     html[dir="ltr"] .project-body { direction: ltr; }
@@ -204,29 +223,6 @@
       padding: 9px 15px; border-radius: 10px; font-size: 0.8rem; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; transition: 0.25s; cursor: pointer;
     }
     .btn-blueprint:hover { background: var(--accent); color: #070b12; border-color: var(--accent); }
-
-    /* SIMULATOR COMPONENT - WIDGET (تصميم المحاكاة المستوحى من الفيديو) */
-    .sim-card {
-      width: 100%; height: 320px; background: #0c131f; display: flex; flex-direction: column; font-family: Inter, sans-serif;
-    }
-    .sim-header {
-      padding: 10px 14px; background: #131d2e; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center;
-    }
-    .sim-user { display: flex; align-items: center; gap: 8px; }
-    .sim-avatar { width: 26px; height: 26px; border-radius: 50%; background: var(--accent2); display: grid; place-items: center; font-size: 0.7rem; color: #fff; font-weight: bold; }
-    .sim-name { font-size: 0.8rem; font-weight: 700; color: #fff; }
-    .sim-status { font-size: 0.65rem; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
-    .sim-status.online { background: rgba(99, 230, 190, 0.2); color: var(--green); }
-    .sim-status.offline { background: rgba(255, 100, 100, 0.2); color: #ff6b6b; }
-    
-    .sim-body { flex: 1; padding: 12px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
-    .sim-msg { max-width: 82%; padding: 8px 12px; border-radius: 12px; font-size: 0.75rem; line-height: 1.4; }
-    .sim-msg.user { background: rgba(100, 216, 255, 0.15); border: 1px solid rgba(100, 216, 255, 0.3); color: #fff; align-self: flex-end; border-bottom-right-radius: 2px; }
-    .sim-msg.bot { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--line); color: var(--muted); align-self: flex-start; border-bottom-left-radius: 2px; }
-    
-    .sim-controls { padding: 8px; background: #090e17; border-top: 1px solid var(--line); display: flex; gap: 6px; }
-    .sim-btn { flex: 1; padding: 6px; font-size: 0.7rem; border-radius: 6px; border: 1px solid var(--line); background: rgba(255,255,255,0.03); color: var(--text); cursor: pointer; transition: 0.2s; }
-    .sim-btn:hover { background: var(--accent); color: #000; font-weight: bold; }
 
     /* SERVICES & PROCESS */
     .services{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
@@ -381,7 +377,7 @@
         </div>
         <div class="stats">
           <div class="stat"><div class="stat-icon"><i class="fa-solid fa-diagram-project"></i></div><strong>68+ Nodes</strong><span data-ar="هيكلية مشروع Nexus Health" data-en="Nexus Health Architecture">هيكلية مشروع Nexus Health</span></div>
-          <div class="stat"><div class="stat-icon"><i class="fa-solid fa-robot"></i></div><strong>AI Agents</strong><span data-ar="وكلاء متخصصون لمهام معقدة" data-en="Specialized Agents for complex tasks">وكلاء متخصصون لمهام معقدة</span></div>
+          <div class="stat"><div class="stat-icon"><div class="stat-icon"><i class="fa-solid fa-robot"></i></div><strong>AI Agents</strong><span data-ar="وكلاء متخصصون لمهام معقدة" data-en="Specialized Agents for complex tasks">وكلاء متخصصون لمهام معقدة</span></div></div>
           <div class="stat"><div class="stat-icon"><i class="fa-solid fa-database"></i></div><strong>RAG + Vector DB</strong><span data-ar="ربط المعرفة بمصادر قابلة للتحقق" data-en="Retrieval grounded in verified sources">ربط المعرفة بمصادر قابلة للتحقق</span></div>
           <div class="stat"><div class="stat-icon"><i class="fa-solid fa-plug"></i></div><strong>API Integration</strong><span>WhatsApp, Telegram, Gmail, Sheets</span></div>
         </div>
@@ -397,18 +393,36 @@
 
         <div class="projects">
 
-          <!-- PROJECT 01: KROKETT ASSISTANT -->
+          <!-- PROJECT 01: KROKETT ASSISTANT WITH CLEAR ENLARGED CHAT INTERFACE (خالٍ من الحواف السوداء والكيبورد) -->
           <article class="project">
             <div class="project-media">
               <div class="browser">
                 <div class="browser-bar"><b></b><b></b><b></b></div>
-                <div class="mock-video-container">
-                  <video autoplay loop muted playsinline poster="assets/projects/krokett/krokett-full.png">
-                    <source src="assets/projects/krokett/krokett-mockup.mp4" type="video/mp4">
-                  </video>
+                <div class="custom-chat-display">
+                  <div class="chat-header-bar">
+                    <i class="fa-solid fa-robot" style="color:var(--accent);"></i>
+                    <div class="chat-header-info">
+                      <strong>Krokett AI Bot</strong>
+                      <span>متصل الآن (Online)</span>
+                    </div>
+                  </div>
+                  <div class="chat-messages-container">
+                    <div class="chat-bubble user">
+                      <div class="voice-note"><i class="fa-solid fa-microphone"></i> <span>رسالة صوتية (0:04)</span></div>
+                    </div>
+                    <div class="chat-bubble bot">
+                      أهلاً بك! تم استلام طلبك عبر الصوت وتحليله: 🍔 2 كروكيت دجاج + 1 كولا. الإجمالي: 180 ج.م. هل تؤكد الطلب؟
+                    </div>
+                    <div class="chat-bubble user">
+                      تمام أأكد الطلب، التوصيل للعنوان المسجل.
+                    </div>
+                    <div class="chat-bubble bot">
+                      تم تسجيل الطلب وإرسال التنبيه للمطبخ بنجاح! 🚀
+                    </div>
+                  </div>
                 </div>
               </div>
-              <span class="media-label">Krokett Assistant — Live Demo</span>
+              <span class="media-label">Krokett Assistant — Live Chat Preview</span>
             </div>
             <div class="project-body">
               <div>
@@ -439,44 +453,44 @@
             </div>
           </article>
 
-          <!-- PROJECT 02: AUTOMATED MESSAGING SIMULATOR (المشروع الجديد المستوحى من الفيديو) -->
+          <!-- PROJECT 02: HR NINJA ASSISTANT (مشروع إدارة إجازات الموظفين القائم) -->
           <article class="project">
             <div class="project-media">
               <div class="browser">
                 <div class="browser-bar"><b></b><b></b><b></b></div>
-                <div class="sim-card">
-                  <div class="sim-header">
-                    <div class="sim-user">
-                      <div class="sim-avatar">S</div>
-                      <div class="sim-name">Sandra's Cakes</div>
+                <div class="custom-chat-display">
+                  <div class="chat-header-bar">
+                    <i class="fa-solid fa-user-gear" style="color:var(--accent2);"></i>
+                    <div class="chat-header-info">
+                      <strong>HR Ninja Assistant</strong>
+                      <span>مساعد الموارد البشرية</span>
                     </div>
-                    <div id="sim-status-badge" class="sim-status online">Online</div>
                   </div>
-                  <div id="sim-body" class="sim-body">
-                    <div class="sim-msg bot">مرحباً بك! جرب التفاعل مع محاكي الأتمتة المباشر أدناه.</div>
-                  </div>
-                  <div class="sim-controls">
-                    <button class="sim-btn" onclick="runSim('online')">☀️ داخل ساعات العمل</button>
-                    <button class="sim-btn" onclick="runSim('offline')">🌙 خارج ساعات العمل</button>
-                    <button class="sim-btn" onclick="resetSim()">🔄 إعادة</button>
+                  <div class="chat-messages-container">
+                    <div class="chat-bubble user">
+                      عايز أقدم على إجازة اعتيادي يومين من الأحد الجاي.
+                    </div>
+                    <div class="chat-bubble bot">
+                      تم استلام طلب الإجازة وتم التحقق من رصيدك المتبقي (14 يوم). جارٍ توجيه الطلب للمدير المباشر للاعتماد.
+                    </div>
                   </div>
                 </div>
               </div>
-              <span class="media-label">Live Interactive Simulator — Sandra's Cakes</span>
+              <span class="media-label">HR Ninja Assistant — System Preview</span>
             </div>
             <div class="project-body">
               <div>
-                <span class="project-num">02 / SMART MESSAGING AUTOMATION</span>
-                <h3>Auto-Response & Business Hours Router</h3>
-                <div class="project-sub" data-ar="أتمتة الردود على الرسائل 24/7 حسب أوقات العمل" data-en="24/7 Automated Messaging & Schedule Routing">أتمتة الردود على الرسائل 24/7 حسب أوقات العمل</div>
-                <p data-ar="نظام أتمتة يحدد حالة العمل تلقائياً؛ يُرسل الكتالوج وقائمة الأسعار فوراً خلال ساعات العمل الرسمية، ويتكفل بالرد التلقائي وحفظ الاستفسارات خارج أوقات العمل لتفادي ضياع أي عميل." data-en="Automated response system dynamically sensing business hours. Delivers catalogs instantly during work hours, and engages customers offline to prevent lost leads.">نظام أتمتة يحدد حالة العمل تلقائياً؛ يُرسل الكتالوج وقائمة الأسعار فوراً خلال ساعات العمل الرسمية، ويتكفل بالرد التلقائي وحفظ الاستفسارات خارج أوقات العمل لتفادي ضياع أي عميل.</p>
+                <span class="project-num">02 / HR AUTOMATION</span>
+                <h3>HR Ninja Assistant</h3>
+                <div class="project-sub" data-ar="نظام أتمتة الإجازات واستفسارات الموظفين" data-en="Employee Leave & HR Requests Automation">نظام أتمتة الإجازات واستفسارات الموظفين</div>
+                <p data-ar="نظام أتمتة متكامل عبر WhatsApp وTelegram معالج بـ n8n يتولى استقبال طلبات إجازات الموظفين، والتحقق من الرصيد المتوفر، وتوجيه التنبيه للمدير للتأكيد والتسجيل الحظي في Google Sheets." data-en="Automated HR leave management workflow via WhatsApp & Telegram using n8n, validating leave balances and routing manager approvals in real time.">نظام أتمتة متكامل عبر WhatsApp وTelegram معالج بـ n8n يتولى استقبال طلبات إجازات الموظفين، والتحقق من الرصيد المتوفر، وتوجيه التنبيه للمدير للتأكيد والتسجيل الحظي في Google Sheets.</p>
                 <ul class="features">
-                  <li data-ar="الرد التلقائي المباشر لضمان التفاعل 24/7" data-en="Stay connected 24/7 with instant automated triggers">الرد التلقائي المباشر لضمان التفاعل 24/7</li>
-                  <li data-ar="توجيه الذكي وحساب شفتات العمل (Online / Offline)" data-en="Dynamic schedule & time-based condition routing">توجيه الذكي وحساب شفتات العمل (Online / Offline)</li>
-                  <li data-ar="توفير روابط الكتالوج واستلام الاستفسارات تلقائياً" data-en="Automated catalog delivery and off-hours lead capture">توفير روابط الكتالوج واستلام الاستفسارات تلقائياً</li>
+                  <li data-ar="استقبال الطلبات الذكي ومزامنتها مباشرة" data-en="Smart request processing and sync">استقبال الطلبات الذكي ومزامنتها مباشرة</li>
+                  <li data-ar="ربط واجهات Evolution API وTelegram Bot" data-en="Seamless Evolution API & Telegram integrations">ربط واجهات Evolution API وTelegram Bot</li>
+                  <li data-ar="تحديث قواعد البيانات الفوري ومتابعة الرصيد" data-en="Real-time sheet updates and balance tracking">تحديث قواعد البيانات الفوري ومتابعة الرصيد</li>
                 </ul>
               </div>
-              <div class="tags"><span class="tag">Schedule Trigger</span><span class="tag">n8n</span><span class="tag">WhatsApp / Messenger</span><span class="tag">Webhooks</span></div>
+              <div class="tags"><span class="tag">n8n</span><span class="tag">Evolution API</span><span class="tag">WhatsApp</span><span class="tag">Google Sheets</span></div>
             </div>
           </article>
 
@@ -485,9 +499,9 @@
             <div class="project-media">
               <div class="browser">
                 <div class="browser-bar"><b></b><b></b><b></b></div>
-                <div class="mock-ui" style="padding: 20px;">
-                  <div class="mock-title"></div>
-                  <div class="mock-chat"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span></div>
+                <div style="padding: 20px; display: flex; flex-direction: column; gap: 10px;">
+                  <div style="height: 12px; background: rgba(255,255,255,0.1); border-radius: 4px; width: 60%;"></div>
+                  <div style="height: 12px; background: rgba(255,255,255,0.05); border-radius: 4px; width: 80%;"></div>
                 </div>
               </div>
               <span class="media-label">PreAuth Mind — System Preview</span>
@@ -513,9 +527,9 @@
             <div class="project-media">
               <div class="browser">
                 <div class="browser-bar"><b></b><b></b><b></b></div>
-                <div class="mock-ui" style="padding: 20px;">
-                  <div class="mock-title"></div>
-                  <div class="mock-row"><div class="mock-card"></div><div class="mock-card"></div><div class="mock-card"></div><div class="mock-card"></div></div>
+                <div style="padding: 20px; display: flex; flex-direction: column; gap: 10px;">
+                  <div style="height: 12px; background: rgba(255,255,255,0.1); border-radius: 4px; width: 40%;"></div>
+                  <div style="height: 12px; background: rgba(255,255,255,0.05); border-radius: 4px; width: 90%;"></div>
                 </div>
               </div>
               <span class="media-label">Nexus Health — Workflow Architecture</span>
@@ -570,7 +584,7 @@
       </div>
     </section>
 
-    <!-- SECTION CONTACT WITH DIRECT FORM (نموذج التواصل المباشر) -->
+    <!-- SECTION CONTACT FORM (تم تعديل الزر وطريقة التواصل) -->
     <section id="contact">
       <div class="container cta-container">
         <div class="cta">
@@ -578,8 +592,8 @@
           <h2 data-ar="لديك عملية متكررة؟ لنحولها إلى مسار عمل آلي." data-en="Have a repetitive workflow? Let's automate it.">لديك عملية متكررة؟ لنحولها إلى مسار عمل آلي.</h2>
           <p data-ar="إذا كانت لديك فكرة أتمتة أو عملية تستهلك وقت فريقك، يسعدني التواصل لبحث أفضل الحلول." data-en="If you have an automation idea or a process taking up team time, send over the details to get started.">إذا كانت لديك فكرة أتمتة أو عملية تستهلك وقت فريقك، يسعدني التواصل لبحث أفضل الحلول.</p>
           <div class="cta-actions">
-            <a class="btn btn-primary" href="mailto:asbany103@gmail.com"><i class="fa-regular fa-envelope"></i> Email</a>
-            <a class="btn btn-secondary" href="https://wa.me/201021804181" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+            <a class="btn btn-primary" href="mailto:asbany103@gmail.com"><i class="fa-regular fa-envelope"></i> البريد الإلكتروني</a>
+            <a class="btn btn-secondary" href="https://wa.me/201021804181" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> واتساب</a>
             <a class="btn btn-secondary" href="https://www.linkedin.com/in/ahmed-abdelhamid15" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
           </div>
         </div>
@@ -587,18 +601,18 @@
         <form class="contact-form" onsubmit="submitForm(event)">
           <div class="form-group">
             <label data-ar="الاسم" data-en="Your Name">الاسم</label>
-            <input type="text" required placeholder="Ahmed Abd Elhamid">
+            <input type="text" id="form-name" required placeholder="أحمد عبد الحميد">
           </div>
           <div class="form-group">
             <label data-ar="البريد الإلكتروني" data-en="Your Email">البريد الإلكتروني</label>
-            <input type="email" required placeholder="name@company.com">
+            <input type="email" id="form-email" required placeholder="name@company.com">
           </div>
           <div class="form-group">
             <label data-ar="تفاصيل المشروع أو العملية" data-en="Project Details">تفاصيل المشروع أو العملية</label>
-            <textarea rows="4" required placeholder="اكتب التفاصيل هنا..."></textarea>
+            <textarea id="form-details" rows="4" required placeholder="اكتب التفاصيل هنا..."></textarea>
           </div>
           <button type="submit" class="btn btn-primary" style="justify-content: center; width: 100%;">
-            <i class="fa-solid fa-paper-plane"></i> <span data-ar="إرسال عبر n8n Webhook" data-en="Send via n8n Webhook">إرسال عبر n8n Webhook</span>
+            <i class="fa-solid fa-paper-plane"></i> <span data-ar="إرسال" data-en="Send Message">إرسال</span>
           </button>
         </form>
       </div>
@@ -660,7 +674,6 @@
       btn.classList.add('active');
     }
 
-    /* إغلاق Modal عند النقر خارجه */
     window.onclick = function(event) {
       if (event.target.classList.contains('modal')) {
         event.target.style.display = "none";
@@ -668,7 +681,6 @@
       }
     };
 
-    /* 2. دعم إغلاق الـ Modal بزر Escape */
     document.addEventListener('keydown', function(event) {
       if (event.key === "Escape") {
         const activeModals = document.querySelectorAll('.modal');
@@ -681,7 +693,7 @@
       }
     });
 
-    /* 3. Language Toggle Function */
+    /* 2. Language Toggle Function */
     let currentLang = 'ar';
     function toggleLanguage() {
       currentLang = currentLang === 'ar' ? 'en' : 'ar';
@@ -695,43 +707,18 @@
       });
     }
 
-    /* 4. Interactive Simulator Logic (محاكي الأتمتة المباشر) */
-    function runSim(mode) {
-      const body = document.getElementById('sim-body');
-      const badge = document.getElementById('sim-status-badge');
-      body.innerHTML = '';
-
-      if(mode === 'online') {
-        badge.className = 'sim-status online';
-        badge.innerText = 'Online';
-        body.innerHTML += `<div class="sim-msg user">Could you let me know what flavor muffins you sell?</div>`;
-        setTimeout(() => {
-          body.innerHTML += `<div class="sim-msg bot">Welcome to Sandra's Cakes 🧁<br>Check out our catalog and let us know if you have any questions!<br><br><b>[ View Catalog Button ]</b></div>`;
-          body.scrollTop = body.scrollHeight;
-        }, 500);
-      } else {
-        badge.className = 'sim-status offline';
-        badge.innerText = 'Offline';
-        body.innerHTML += `<div class="sim-msg user">Hi there, do you have vegan cupcakes?</div>`;
-        setTimeout(() => {
-          body.innerHTML += `<div class="sim-msg bot">Thanks for contacting Sandra's Cakes! We're closed but will get back to you Mon-Fri, 9 AM - 5 PM.<br>In the meantime, feel free to browse our catalog.</div>`;
-          body.scrollTop = body.scrollHeight;
-        }, 500);
-      }
-    }
-
-    function resetSim() {
-      const body = document.getElementById('sim-body');
-      const badge = document.getElementById('sim-status-badge');
-      badge.className = 'sim-status online';
-      badge.innerText = 'Online';
-      body.innerHTML = `<div class="sim-msg bot">مرحباً بك! جرب التفاعل مع محاكي الأتمتة المباشر أدناه.</div>`;
-    }
-
-    /* 5. Contact Form Submission (ربط مع n8n Webhook) */
+    /* 3. Form Handling (توجيه الرسالة مباشرة إلى الجيميل والواتساب) */
     function submitForm(e) {
       e.preventDefault();
-      alert('تم إرسال نموذج التواصل بنجاح، ويمكن ربطه بـ Webhook الخاص بك في n8n!');
+      const name = document.getElementById('form-name').value;
+      const email = document.getElementById('form-email').value;
+      const details = document.getElementById('form-details').value;
+
+      // فتح تطبيق البريد وتجهيز الرسالة للجيل
+      const mailtoUrl = `mailto:asbany103@gmail.com?subject=مشروع جديد من ${encodeURIComponent(name)}&body=${encodeURIComponent("الاسم: " + name + "\nالبريد: " + email + "\nالتفاصيل: " + details)}`;
+      
+      window.location.href = mailtoUrl;
+      alert('تم تجهيز إرسال الطلب بنجاح إلى البريد الإلكتروني!');
     }
   </script>
 </body>
