@@ -75,6 +75,15 @@
       transition:.25s;
     }
     .nav-links a:hover{color:var(--text);background:rgba(255,255,255,.06)}
+    
+    .nav-right { display: flex; align-items: center; gap: 10px; }
+    .lang-btn {
+      background: rgba(255,255,255,0.05); border: 1px solid var(--line); color: var(--text);
+      padding: 6px 12px; border-radius: 10px; font-size: 0.8rem; font-weight: 700; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 6px; transition: 0.25s;
+    }
+    .lang-btn:hover { background: rgba(100,216,255,0.15); border-color: var(--accent); color: var(--accent); }
+
     .nav-cta{
       display:inline-flex;align-items:center;gap:8px;padding:9px 15px;border-radius:11px;
       background:#f5f7fb;color:#081018;font-size:.86rem;font-weight:800;
@@ -87,6 +96,8 @@
     .hero{min-height:100vh;display:flex;align-items:center;padding:145px 0 90px;position:relative}
     .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:70px;align-items:center;direction:ltr;}
     .hero-copy{direction:rtl}
+    html[dir="ltr"] .hero-copy { direction: ltr; }
+    
     .eyebrow{
       display:inline-flex;align-items:center;gap:9px;padding:7px 12px;border:1px solid rgba(100,216,255,.2);
       background:rgba(100,216,255,.06);border-radius:999px;color:var(--accent);
@@ -157,18 +168,18 @@
     }
     .project:nth-child(even) .project-media{border-right:0;border-left:1px solid var(--line)}
     .browser{
-      width:92%;border:1px solid var(--line);border-radius:15px;overflow:hidden;
+      width:95%;border:1px solid var(--line);border-radius:15px;overflow:hidden;
       background:#0d1420;box-shadow:0 20px 40px rgba(0,0,0,.35);
     }
     .browser-bar{height:30px;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 10px;gap:5px}
     .browser-bar b{width:6px;height:6px;background:#657286;border-radius:50%}
     
-    /* Mockup Video Styling */
+    /* Mockup Video Styling - FIXED CONTAINMENT */
     .mock-video-container {
-      width: 100%; height: 260px; background: #000; display: flex; align-items: center; justify-content: center; overflow: hidden;
+      width: 100%; height: 310px; background: #070b12; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 10px;
     }
     .mock-video-container video {
-      width: 100%; height: 100%; object-fit: cover;
+      max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px;
     }
 
     .mock-ui{padding:22px;min-height:205px}
@@ -182,20 +193,23 @@
     .media-label{position:absolute;bottom:12px;color:#657286;font-size:.7rem}
     
     .project-body{direction:rtl;padding:35px;display:flex;flex-direction:column;justify-content:space-between}
+    html[dir="ltr"] .project-body { direction: ltr; }
+
     .project-num{font:700 .7rem Inter,sans-serif;color:#536176;letter-spacing:1px}
-    .project h3{font-size:1.5rem;margin:8px 0 5px}
+    .project h3{font-size:1.5rem;margin:8px 0 5px;font-family:Inter,sans-serif;}
     .project-sub{color:var(--accent);font-size:.8rem;font-weight:700;margin-bottom:14px}
     .project p{color:var(--muted);font-size:.87rem;line-height:1.95}
     .features{list-style:none;margin:18px 0 20px;display:grid;gap:7px}
     .features li{font-size:.78rem;color:#c1c9d5}
     .features li::before{content:"✓";color:var(--green);font-weight:800;margin-left:8px}
+    html[dir="ltr"] .features li::before{margin-left:0;margin-right:8px}
     .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;margin-bottom:15px}
     .tag{font:600 .67rem Inter,sans-serif;color:#aeb9ca;padding:5px 8px;border:1px solid var(--line);border-radius:7px;background:rgba(255,255,255,.025)}
     
     .project-actions { margin-top: 10px; }
     .btn-blueprint {
       background: rgba(100, 216, 255, 0.08); border: 1px solid rgba(100, 216, 255, 0.25); color: var(--accent);
-      padding: 9px 15px; border-radius: 10px; font-size: 0.8rem; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; transition: 0.25s;
+      padding: 9px 15px; border-radius: 10px; font-size: 0.8rem; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; transition: 0.25s; cursor: pointer;
     }
     .btn-blueprint:hover { background: var(--accent); color: #070b12; border-color: var(--accent); }
 
@@ -229,7 +243,7 @@
     .socials a{width:34px;height:34px;border:1px solid var(--line);border-radius:9px;display:grid;place-items:center;transition:.2s}
     .socials a:hover{color:var(--accent);border-color:rgba(100,216,255,.3)}
 
-    /* MODAL SYSTEM (REUSABLE) */
+    /* MODAL SYSTEM */
     .modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(7, 11, 18, 0.94); backdrop-filter: blur(12px); }
     .modal-wrapper { width: 92%; max-width: 1250px; margin: 2% auto; display: flex; flex-direction: column; height: 88vh; position: relative; }
     .close-btn { position: absolute; top: -10px; right: 0; color: #fff; font-size: 32px; font-weight: bold; cursor: pointer; z-index: 10; opacity: 0.8; transition: 0.2s; }
@@ -241,7 +255,7 @@
 
     .image-container { flex: 1; overflow: auto; display: flex; align-items: center; justify-content: center; background: #0c121d; border-radius: 16px; border: 1px solid var(--line); padding: 15px; }
     .image-container img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; }
-    .caption { text-align: center; color: var(--muted); padding-top: 10px; font-size: 0.85rem; direction: rtl; }
+    .caption { text-align: center; color: var(--muted); padding-top: 10px; font-size: 0.85rem; }
 
     @media(max-width:950px){
       .nav-links{display:none}.menu-btn{display:block}.nav-cta{display:none}
@@ -273,13 +287,16 @@
         <span>Ahmed Abdelhamid</span>
       </a>
       <ul class="nav-links">
-        <li><a href="#about">نبذة</a></li>
-        <li><a href="#projects">المشاريع</a></li>
-        <li><a href="#services">الخدمات</a></li>
-        <li><a href="#process">طريقة العمل</a></li>
+        <li><a href="#about" data-ar="نبذة" data-en="About">نبذة</a></li>
+        <li><a href="#projects" data-ar="المشاريع" data-en="Projects">المشاريع</a></li>
+        <li><a href="#services" data-ar="الخدمات" data-en="Services">الخدمات</a></li>
+        <li><a href="#process" data-ar="طريقة العمل" data-en="Process">طريقة العمل</a></li>
       </ul>
-      <a class="nav-cta" href="#contact"><i class="fa-regular fa-paper-plane"></i> تواصل معي</a>
-      <button class="menu-btn" aria-label="فتح القائمة"><i class="fa-solid fa-bars"></i></button>
+      <div class="nav-right">
+        <button class="lang-btn" onclick="toggleLanguage()"><i class="fa-solid fa-globe"></i> <span id="lang-text">EN</span></button>
+        <a class="nav-cta" href="#contact"><i class="fa-regular fa-paper-plane"></i> <span data-ar="تواصل معي" data-en="Contact">تواصل معي</span></a>
+        <button class="menu-btn" aria-label="فتح القائمة"><i class="fa-solid fa-bars"></i></button>
+      </div>
     </div>
   </nav>
 
@@ -288,13 +305,13 @@
       <div class="container hero-grid">
         <div class="hero-copy">
           <div class="eyebrow"><span class="dot"></span> AI Automation & Integration</div>
-          <h1>أحوّل المهام المتكررة إلى <span class="gradient">أنظمة ذكية</span>.</h1>
-          <p class="hero-text">
+          <h1 data-ar="أحوّل المهام المتكررة إلى <span class='gradient'>أنظمة ذكية</span>." data-en="Transforming repetitive tasks into <span class='gradient'>smart systems</span>.">أحوّل المهام المتكررة إلى <span class="gradient">أنظمة ذكية</span>.</h1>
+          <p class="hero-text" data-ar="أبني حلول أتمتة عملية تربط الذكاء الاصطناعي بالـ APIs وقواعد البيانات وقنوات التواصل، من workflows في n8n إلى RAG وAI Agents — بهدف تقليل العمل اليدوي وتحسين سير العمليات." data-en="I build practical automation solutions connecting AI with APIs, databases, and communication channels—from n8n workflows to RAG and AI Agents—to eliminate manual work and streamline operations.">
             أبني حلول أتمتة عملية تربط الذكاء الاصطناعي بالـ APIs وقواعد البيانات وقنوات التواصل،
             من workflows في n8n إلى RAG وAI Agents — بهدف تقليل العمل اليدوي وتحسين سير العمليات.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#projects"><i class="fa-solid fa-arrow-down"></i> شوف المشاريع</a>
+            <a class="btn btn-primary" href="#projects"><i class="fa-solid fa-arrow-down"></i> <span data-ar="شوف المشاريع" data-en="View Projects">شوف المشاريع</span></a>
             <a class="btn btn-secondary" href="https://www.linkedin.com/in/ahmed-abdelhamid15" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
           </div>
           <div class="hero-contact">
@@ -330,14 +347,14 @@
     <section id="about">
       <div class="container">
         <div class="section-head">
-          <div><div class="kicker">01 — About</div><h2 class="section-title">خبرة مبنية على أنظمة حقيقية</h2></div>
-          <p class="section-desc">تركيزي ليس على إضافة AI لمجرد الإضافة؛ بل على تصميم workflow واضح، قابل للصيانة، ومربوط بمصادر البيانات الفعلية.</p>
+          <div><div class="kicker" data-ar="01 — عن الخبرة" data-en="01 — About">01 — عن الخبرة</div><h2 class="section-title" data-ar="خبرة مبنية على أنظمة حقيقية" data-en="Built on Production Systems">خبرة مبنية على أنظمة حقيقية</h2></div>
+          <p class="section-desc" data-ar="تركيزي ليس على إضافة الذكاء الاصطناعي لمجرد الشكليات؛ بل على تصميم مسار عمل واضح، قابل للصيانة، ومربوط بمصادر البيانات الفعلية." data-en="My focus is not adding AI for hype; it is designing clean, maintainable workflows connected to real data sources.">تركيزي ليس على إضافة الذكاء الاصطناعي لمجرد الشكليات؛ بل على تصميم مسار عمل واضح، قابل للصيانة، ومربوط بمصادر البيانات الفعلية.</p>
         </div>
         <div class="stats">
-          <div class="stat"><div class="stat-icon"><i class="fa-solid fa-diagram-project"></i></div><strong>68+ Nodes</strong><span>Architecture لمشروع Nexus Health</span></div>
-          <div class="stat"><div class="stat-icon"><i class="fa-solid fa-robot"></i></div><strong>AI Agents</strong><span>وكلاء متخصصون لمهام مختلفة</span></div>
-          <div class="stat"><div class="stat-icon"><i class="fa-solid fa-database"></i></div><strong>RAG + Vector DB</strong><span>ربط المعرفة بمصادر قابلة للتحقق</span></div>
-          <div class="stat"><div class="stat-icon"><i class="fa-solid fa-plug"></i></div><strong>API Integration</strong><span>WhatsApp, Telegram, Gmail, Sheets وغيرها</span></div>
+          <div class="stat"><div class="stat-icon"><i class="fa-solid fa-diagram-project"></i></div><strong>68+ Nodes</strong><span data-ar="هيكلية مشروع Nexus Health" data-en="Nexus Health Architecture">هيكلية مشروع Nexus Health</span></div>
+          <div class="stat"><div class="stat-icon"><i class="fa-solid fa-robot"></i></div><strong>AI Agents</strong><span data-ar="وكلاء متخصصون لمهام معقدة" data-en="Specialized Agents for complex tasks">وكلاء متخصصون لمهام معقدة</span></div>
+          <div class="stat"><div class="stat-icon"><i class="fa-solid fa-database"></i></div><strong>RAG + Vector DB</strong><span data-ar="ربط المعرفة بمصادر قابلة للتحقق" data-en="Retrieval grounded in verified sources">ربط المعرفة بمصادر قابلة للتحقق</span></div>
+          <div class="stat"><div class="stat-icon"><i class="fa-solid fa-plug"></i></div><strong>API Integration</strong><span>WhatsApp, Telegram, Gmail, Sheets</span></div>
         </div>
       </div>
     </section>
@@ -345,13 +362,13 @@
     <section id="projects">
       <div class="container">
         <div class="section-head">
-          <div><div class="kicker">02 — Selected Work</div><h2 class="section-title">مشاريع مختارة</h2></div>
-          <p class="section-desc">نماذج من الأنظمة والأتمتة التي تم تصميمها لتنفذ خطوات فعلية، وليس مجرد chatbot للعرض.</p>
+          <div><div class="kicker" data-ar="02 — المشاريع" data-en="02 — Selected Work">02 — المشاريع</div><h2 class="section-title" data-ar="مشاريع مختارة" data-en="Featured Projects">مشاريع مختارة</h2></div>
+          <p class="section-desc" data-ar="نماذج من الأنظمة والأتمتة التي تم تصميمها لتنفذ خطوات فعلية، وليس مجرد بوت محادثة للعرض." data-en="Real automation systems built to execute end-to-end tasks, not just static chatbots.">نماذج من الأنظمة والأتمتة التي تم تصميمها لتنفذ خطوات فعلية، وليس مجرد بوت محادثة للعرض.</p>
         </div>
 
         <div class="projects">
 
-          <!-- PROJECT 01: KROKETT ASSISTANT (UPDATED WITH MOCKUP & DETAILED MODAL) -->
+          <!-- PROJECT 01: KROKETT ASSISTANT -->
           <article class="project">
             <div class="project-media">
               <div class="browser">
@@ -359,7 +376,6 @@
                 <div class="mock-video-container">
                   <video autoplay loop muted playsinline poster="assets/projects/krokett/krokett-full.png">
                     <source src="assets/projects/krokett/krokett-mockup.mp4" type="video/mp4">
-                    متصفحك لا يدعم تشغيل الفيديو.
                   </video>
                 </div>
               </div>
@@ -369,12 +385,12 @@
               <div>
                 <span class="project-num">01 / E-COMMERCE & RAG</span>
                 <h3>Krokett Assistant</h3>
-                <div class="project-sub">مساعد طلبات المطاعم الذكي (34 Nodes)</div>
-                <p>بوت مبيعات ومساعد طلبات تفاعلي عبر Telegram معالَج بالـ AI والـ Voice Recognition، يستخرج المنيو والأسعار تلقائياً عبر RAG Engine، ويجمع تفاصيل الطلب والتوصيل ويحفظ الفواتير.</p>
+                <div class="project-sub" data-ar="مساعد طلبات المطاعم الذكي (34 Nodes)" data-en="Smart Restaurant Ordering Assistant (34 Nodes)">مساعد طلبات المطاعم الذكي (34 Nodes)</div>
+                <p data-ar="بوت مبيعات ومساعد طلبات تفاعلي عبر Telegram معالج بالذكاء الاصطناعي والتعرف الصوتي، يستخرج قائمة الطعام والأسعار تلقائياً عبر محرك RAG، ويجمع تفاصيل الطلب والتوصيل ويحفظ الفواتير." data-en="Interactive Telegram order assistant powered by AI and voice recognition. Extracts menu & pricing via RAG Engine, collects delivery details, and generates invoices.">بوت مبيعات ومساعد طلبات تفاعلي عبر Telegram معالج بالذكاء الاصطناعي والتعرف الصوتي، يستخرج قائمة الطعام والأسعار تلقائياً عبر محرك RAG، ويجمع تفاصيل الطلب والتوصيل ويحفظ الفواتير.</p>
                 <ul class="features">
-                  <li>استقبال وتحليل الفويسات الصوتية للعملاء</li>
-                  <li>ربط قاعدة المعرفة والمنيو عبر Vector Database (Pinecone)</li>
-                  <li>حساب التكلفة وتأكيد الطلب وإرسال التنبيهات تلقائياً</li>
+                  <li data-ar="استقبال وتحليل الرسائل الصوتية للعملاء" data-en="Voice message processing & transcription">استقبال وتحليل الرسائل الصوتية للعملاء</li>
+                  <li data-ar="ربط قاعدة المعرفة والمنيو عبر Vector Database (Pinecone)" data-en="Knowledge base & menu retrieval via Pinecone">ربط قاعدة المعرفة والمنيو عبر Vector Database (Pinecone)</li>
+                  <li data-ar="حساب التكلفة وتأكيد الطلب وإرسال التنبيهات تلقائياً" data-en="Automated billing, order confirmation & alerts">حساب التكلفة وتأكيد الطلب وإرسال التنبيهات تلقائياً</li>
                 </ul>
               </div>
               <div>
@@ -387,7 +403,7 @@
                 </div>
                 <div class="project-actions">
                   <button class="btn-blueprint" onclick="openModal('krokett-modal')">
-                    <i class="fa-solid fa-sitemap"></i> عرض المخطط الهيكلي (Workflow Canvas)
+                    <i class="fa-solid fa-sitemap"></i> <span data-ar="عرض المخطط الهيكلي (Workflow Canvas)" data-en="View Workflow Canvas">عرض المخطط الهيكلي (Workflow Canvas)</span>
                   </button>
                 </div>
               </div>
@@ -404,18 +420,18 @@
                   <div class="mock-chat"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span></div>
                 </div>
               </div>
-              <span class="media-label">PreAuth Mind — system preview</span>
+              <span class="media-label">PreAuth Mind — System Preview</span>
             </div>
             <div class="project-body">
               <div>
                 <span class="project-num">02 / MULTI-AGENT</span>
                 <h3>PreAuth Mind</h3>
-                <div class="project-sub">نظام التدقيق والتأمين الطبي الآلي</div>
-                <p>نظام متعدد الوكلاء يتعامل مع طلبات الموافقة المسبقة القادمة عبر البريد، يستخرج البيانات ويقارنها بقواعد المعرفة المخزنة في Vector Store ثم يجهز نتيجة المراجعة.</p>
+                <div class="project-sub" data-ar="نظام التدقيق والتأمين الطبي الآلي" data-en="Automated Medical Insurance Audit System">نظام التدقيق والتأمين الطبي الآلي</div>
+                <p data-ar="نظام متعدد الوكلاء يتعامل مع طلبات الموافقة المسبقة القادمة عبر البريد الإلكتروني، يستخرج البيانات ويقارنها بقواعد المعرفة المخزنة ثم يجهز نتيجة المراجعة." data-en="Multi-agent system processing pre-authorization email requests, extracting patient data, auditing against policy rules, and outputting review decisions.">نظام متعدد الوكلاء يتعامل مع طلبات الموافقة المسبقة القادمة عبر البريد الإلكتروني، يستخرج البيانات ويقارنها بقواعد المعرفة المخزنة ثم يجهز نتيجة المراجعة.</p>
                 <ul class="features">
-                  <li>استخراج بيانات الطلب من Gmail</li>
-                  <li>مراجعة الطلب مقابل قواعد الموافقات</li>
-                  <li>إخراج قرار منظم مع سبب المراجعة</li>
+                  <li data-ar="استخراج بيانات الطلب التلقائي من البريد" data-en="Automated email claim extraction">استخراج بيانات الطلب التلقائي من البريد</li>
+                  <li data-ar="مراجعة الطلب مقابل قواعد الموافقات الطبية" data-en="Medical policy compliance check">مراجعة الطلب مقابل قواعد الموافقات الطبية</li>
+                  <li data-ar="إخراج قرار منظم ومصحب بأسباب المراجعة" data-en="Structured decision output with audit logs">إخراج قرار منظم ومصحب بأسباب المراجعة</li>
                 </ul>
               </div>
               <div class="tags"><span class="tag">n8n</span><span class="tag">Multi-Agent</span><span class="tag">Vector Store</span><span class="tag">Gmail API</span></div>
@@ -432,18 +448,18 @@
                   <div class="mock-row"><div class="mock-card"></div><div class="mock-card"></div><div class="mock-card"></div><div class="mock-card"></div></div>
                 </div>
               </div>
-              <span class="media-label">Nexus Health — workflow architecture</span>
+              <span class="media-label">Nexus Health — Workflow Architecture</span>
             </div>
             <div class="project-body">
               <div>
                 <span class="project-num">03 / HEALTHCARE</span>
                 <h3>Nexus Health</h3>
-                <div class="project-sub">منظومة أتمتة للمراكز الطبية</div>
-                <p>منظومة موسعة لإدارة التفاعل مع المرضى وربط قنوات التواصل والحجز والمتابعة داخل workflow واحد.</p>
+                <div class="project-sub" data-ar="منظومة أتمتة للمراكز الطبية" data-en="Healthcare Automation Infrastructure">منظومة أتمتة للمراكز الطبية</div>
+                <p data-ar="منظومة موسعة لإدارة التفاعل مع المرضى وربط قنوات التواصل والحجز والمتابعة داخل مسار عمل واحد." data-en="Comprehensive patient engagement system integrating communication channels, appointment bookings, and follow-ups into a unified workflow.">منظومة موسعة لإدارة التفاعل مع المرضى وربط قنوات التواصل والحجز والمتابعة داخل مسار عمل واحد.</p>
                 <ul class="features">
-                  <li>فرز وتوجيه أولي للحالات</li>
-                  <li>تكامل حجز المواعيد عبر Cal.com</li>
-                  <li>رسائل متابعة وتذكير عبر WhatsApp</li>
+                  <li data-ar="فرز وتوجيه أولي وتلقائي للحالات" data-en="Automated patient triage and routing">فرز وتوجيه أولي وتلقائي للحالات</li>
+                  <li data-ar="تكامل حجز المواعيد عبر منصة Cal.com" data-en="Appointment scheduling via Cal.com">تكامل حجز المواعيد عبر منصة Cal.com</li>
+                  <li data-ar="إرسال رسائل التذكير والمتابعة عبر WhatsApp" data-en="WhatsApp appointment reminders and follow-ups">إرسال رسائل التذكير والمتابعة عبر WhatsApp</li>
                 </ul>
               </div>
               <div class="tags"><span class="tag">68+ Nodes</span><span class="tag">n8n</span><span class="tag">Cal.com</span><span class="tag">WhatsApp API</span></div>
@@ -460,18 +476,18 @@
                   <div class="mock-chat"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span></div>
                 </div>
               </div>
-              <span class="media-label">Dental assistant — RAG flow</span>
+              <span class="media-label">Elite Dental — RAG Flow</span>
             </div>
             <div class="project-body">
               <div>
                 <span class="project-num">04 / RAG</span>
                 <h3>Elite Dental Clinic</h3>
-                <div class="project-sub">مساعد عيادة أسنان بالـ RAG</div>
-                <p>مساعد محادثة يعتمد على قاعدة معرفة يتم تحديثها من ملفات العيادة، ليجيب عن الخدمات والأسعار والمعلومات المتاحة داخل المصدر.</p>
+                <div class="project-sub" data-ar="مساعد عيادة أسنان بالذكاء الاصطناعي" data-en="RAG-Powered Dental Assistant">مساعد عيادة أسنان بالذكاء الاصطناعي</div>
+                <p data-ar="مساعد محادثة يعتمد على قاعدة معرفة يتم تحديثها تلقائياً من ملفات العيادة للإجابة عن الخدمات والأسعار بدقة." data-en="Knowledge-grounded chatbot synced with clinic files to accurately answer inquiries about dental services, pricing, and procedures.">مساعد محادثة يعتمد على قاعدة معرفة يتم تحديثها تلقائياً من ملفات العيادة للإجابة عن الخدمات والأسعار بدقة.</p>
                 <ul class="features">
-                  <li>مزامنة الملفات من Google Drive / Sheets</li>
-                  <li>تحديث قاعدة المعرفة في Vector DB</li>
-                  <li>إجابات مبنية على سياق المصدر</li>
+                  <li data-ar="مزامنة الملفات من Google Drive و Sheets" data-en="Real-time sync with Google Drive / Sheets">مزامنة الملفات من Google Drive و Sheets</li>
+                  <li data-ar="تحديث قاعدة المعرفة في Vector Database" data-en="Automated Vector DB embedding updates">تحديث قاعدة المعرفة في Vector Database</li>
+                  <li data-ar="إجابات دقيقة وموثوقة مبنية على المصادر" data-en="Grounded responses backed by source data">إجابات دقيقة وموثوقة مبنية على المصادر</li>
                 </ul>
               </div>
               <div class="tags"><span class="tag">RAG</span><span class="tag">Pinecone</span><span class="tag">Google Drive</span><span class="tag">Telegram</span></div>
@@ -488,18 +504,18 @@
                   <div class="mock-row"><div class="mock-card"></div><div class="mock-card"></div></div>
                 </div>
               </div>
-              <span class="media-label">HR Ninja — automation preview</span>
+              <span class="media-label">HR Ninja — Automation Preview</span>
             </div>
             <div class="project-body">
               <div>
                 <span class="project-num">05 / HR AUTOMATION</span>
                 <h3>HR Ninja Assistant</h3>
-                <div class="project-sub">أتمتة طلبات الموظفين والإجازات</div>
-                <p>نظام يتعامل مع طلبات الموظفين عبر قنوات المحادثة، ويتحقق من البيانات قبل تسجيل العمليات في قاعدة البيانات.</p>
+                <div class="project-sub" data-ar="أتمتة طلبات الموظفين والإجازات" data-en="Employee Leave & Requests Automation">أتمتة طلبات الموظفين والإجازات</div>
+                <p data-ar="نظام أتمتة يتعامل مع طلبات الموظفين عبر قنوات المحادثة، ويتحقق من البيانات والمستحقين قبل تسجيل العمليات." data-en="Automated HR agent managing employee leave requests via messaging apps, validating allowances before logging to database.">نظام أتمتة يتعامل مع طلبات الموظفين عبر قنوات المحادثة، ويتحقق من البيانات والمستحقين قبل تسجيل العمليات.</p>
                 <ul class="features">
-                  <li>التحقق من هوية الموظف قبل تنفيذ الطلب</li>
-                  <li>معالجة وتسجيل طلبات الإجازات</li>
-                  <li>ربط WhatsApp وTelegram عبر API</li>
+                  <li data-ar="التحقق من هوية الموظف وسجل الإجازات" data-en="Employee identity & leave balance verification">التحقق من هوية الموظف وسجل الإجازات</li>
+                  <li data-ar="معالجة وتسجيل الطلبات تلقائياً" data-en="Automated approval workflow & sheet logging">معالجة وتسجيل الطلبات تلقائياً</li>
+                  <li data-ar="ربط WhatsApp و Telegram عبر الربط المباشر" data-en="Seamless WhatsApp & Telegram integration">ربط WhatsApp و Telegram عبر الربط المباشر</li>
                 </ul>
               </div>
               <div class="tags"><span class="tag">Evolution API</span><span class="tag">WhatsApp</span><span class="tag">n8n</span><span class="tag">Google Sheets</span></div>
@@ -513,14 +529,14 @@
     <section id="services">
       <div class="container">
         <div class="section-head">
-          <div><div class="kicker">03 — Services</div><h2 class="section-title">إيه اللي أقدر أبنيه؟</h2></div>
-          <p class="section-desc">الخدمة تبدأ من فهم العملية الحالية، ثم تصميم الأتمتة وربط الأدوات المطلوبة، وليس من اختيار أداة AI أولاً.</p>
+          <div><div class="kicker" data-ar="03 — الخدمات" data-en="03 — Services">03 — الخدمات</div><h2 class="section-title" data-ar="ما الذي أستطيع إنجازه؟" data-en="What I Can Build">ما الذي أستطيع إنجازه؟</h2></div>
+          <p class="section-desc" data-ar="تبدأ الخدمة من تحليل وفهم مسار العمل الحالي، ثم هندسة الأتمتة وربط الأدوات المناسبة بدقة." data-en="Services start with analyzing your existing operations, followed by engineering robust workflows tailored to your stack.">تبدأ الخدمة من تحليل وفهم مسار العمل الحالي، ثم هندسة الأتمتة وربط الأدوات المناسبة بدقة.</p>
         </div>
         <div class="services">
-          <div class="service"><i class="fa-solid fa-diagram-project"></i><h3>n8n Workflows</h3><p>تصميم workflows وربط Webhooks وAPIs وقواعد البيانات والخدمات المختلفة.</p></div>
-          <div class="service"><i class="fa-solid fa-brain"></i><h3>RAG & Knowledge Bases</h3><p>تحويل ملفات ومصادر العمل إلى قاعدة معرفة قابلة للاسترجاع داخل تطبيقات AI.</p></div>
-          <div class="service"><i class="fa-solid fa-robot"></i><h3>AI Agents</h3><p>تصميم وكلاء متخصصين لتنفيذ مهام محددة مع validation وstructured outputs.</p></div>
-          <div class="service"><i class="fa-solid fa-comments"></i><h3>WhatsApp & Telegram</h3><p>بناء تجارب محادثة للأوردرات والحجوزات وخدمة العملاء والعمليات الداخلية.</p></div>
+          <div class="service"><i class="fa-solid fa-diagram-project"></i><h3>n8n Workflows</h3><p data-ar="تصميم مسارات العمل الأوتوماتيكية وربط Webhooks وقواعد البيانات بكفاءة." data-en="Designing automated workflows connecting Webhooks, APIs, and databases efficiently.">تصميم مسارات العمل الأوتوماتيكية وربط Webhooks وقواعد البيانات بكفاءة.</p></div>
+          <div class="service"><i class="fa-solid fa-brain"></i><h3>RAG & Knowledge Bases</h3><p data-ar="تحويل مستندات ومصادر عملك إلى قاعدة معرفة ذكية وجاهزة للاسترجاع." data-en="Converting operational documents into intelligent, retrievable knowledge bases.">تحويل مستندات ومصادر عملك إلى قاعدة معرفة ذكية وجاهزة للاسترجاع.</p></div>
+          <div class="service"><i class="fa-solid fa-robot"></i><h3>AI Agents</h3><p data-ar="تصميم وكلاء ذكاء اصطناعي لتنفيذ مهام محددة وتوفير مخرجات منظمة." data-en="Building specialized AI agents for autonomous execution with structured outputs.">تصميم وكلاء ذكاء اصطناعي لتنفيذ مهام محددة وتوفير مخرجات منظمة.</p></div>
+          <div class="service"><i class="fa-solid fa-comments"></i><h3>WhatsApp & Telegram</h3><p data-ar="بناء أنظمة المحادثة الآلية للطلبات بالحجوزات وخدمة العملاء والعمليات." data-en="Developing chat automation for orders, bookings, support, and internal ops.">بناء أنظمة المحادثة الآلية للطلبات بالحجوزات وخدمة العملاء والعمليات.</p></div>
         </div>
       </div>
     </section>
@@ -528,14 +544,14 @@
     <section id="process">
       <div class="container">
         <div class="section-head">
-          <div><div class="kicker">04 — Process</div><h2 class="section-title">طريقة الشغل</h2></div>
-          <p class="section-desc">من المشكلة إلى workflow قابل للاستخدام، بخطوات واضحة بدل التعقيد غير الضروري.</p>
+          <div><div class="kicker" data-ar="04 — خطة العمل" data-en="04 — Process">04 — خطة العمل</div><h2 class="section-title" data-ar="طريقة العمل" data-en="Work Methodology">طريقة العمل</h2></div>
+          <p class="section-desc" data-ar="خطوات منظمة وواضحة لتحويل التحديات والعمليات اليدوية إلى مسارات عمل قابلة للاستخدام." data-en="A systematic step-by-step approach to convert manual bottlenecks into reliable workflows.">خطوات منظمة وواضحة لتحويل التحديات والعمليات اليدوية إلى مسارات عمل قابلة للاستخدام.</p>
         </div>
         <div class="process">
-          <div class="step"><div class="step-no">01</div><h3>Understand</h3><p>فهم العملية الحالية ونقاط الهدر والأدوات المستخدمة.</p></div>
-          <div class="step"><div class="step-no">02</div><h3>Design</h3><p>رسم الـ workflow وتحديد البيانات والـ integrations المطلوبة.</p></div>
-          <div class="step"><div class="step-no">03</div><h3>Build</h3><p>تنفيذ الأتمتة وربط AI وAPIs وقواعد البيانات.</p></div>
-          <div class="step"><div class="step-no">04</div><h3>Validate</h3><p>اختبار الحالات المختلفة والتأكد من صحة البيانات والمخرجات.</p></div>
+          <div class="step"><div class="step-no">01</div><h3 data-ar="الفهم والتحليل" data-en="Understand">الفهم والتحليل</h3><p data-ar="فهم العمليات الحالية وتحديد نقاط الهدر والأدوات المستخدمة." data-en="Analyzing existing procedures, pain points, and current toolstacks.">فهم العمليات الحالية وتحديد نقاط الهدر والأدوات المستخدمة.</p></div>
+          <div class="step"><div class="step-no">02</div><h3 data-ar="التصميم والمعمارية" data-en="Design">التصميم والمعمارية</h3><p data-ar="رسم مسار العمل وتحديد نطاق البيانات والربط المطلوب." data-en="Mapping out workflow diagrams, data architecture, and API endpoints.">رسم مسار العمل وتحديد نطاق البيانات والربط المطلوب.</p></div>
+          <div class="step"><div class="step-no">03</div><h3 data-ar="التنفيذ والربط" data-en="Build">التنفيذ والربط</h3><p data-ar="بناء الأتمتة وربط الذكاء الاصطناعي والـ APIs وقواعد البيانات." data-en="Developing automations, connecting AI models, APIs, and databases.">بناء الأتمتة وربط الذكاء الاصطناعي والـ APIs وقواعد البيانات.</p></div>
+          <div class="step"><div class="step-no">04</div><h3 data-ar="الاختبار والاعتماد" data-en="Validate">الاختبار والاعتماد</h3><p data-ar="اختبار كافة الحالات والتأكد من دقة وسرعة المخرجات." data-en="Rigorous testing across edge cases to ensure precision and reliability.">اختبار كافة الحالات والتأكد من دقة وسرعة المخرجات.</p></div>
         </div>
       </div>
     </section>
@@ -544,9 +560,9 @@
       <div class="container">
         <div class="cta">
           <div>
-            <div class="kicker">05 — Contact</div>
-            <h2>عندك عملية متكررة؟ خلّيها workflow.</h2>
-            <p>لو عندك فكرة أتمتة أو عملية بتاخد وقت من فريقك، ابعتلي التفاصيل ونبدأ من المشكلة نفسها.</p>
+            <div class="kicker" data-ar="05 — التواصل" data-en="05 — Contact">05 — التواصل</div>
+            <h2 data-ar="لديك عملية متكررة؟ لنحولها إلى مسار عمل آلي." data-en="Have a repetitive workflow? Let's automate it.">لديك عملية متكررة؟ لنحولها إلى مسار عمل آلي.</h2>
+            <p data-ar="إذا كانت لديك فكرة أتمتة أو عملية تستهلك وقت فريقك، يسعدني التواصل لبحث أفضل الحلول." data-en="If you have an automation idea or a process taking up team time, send over the details to get started.">إذا كانت لديك فكرة أتمتة أو عملية تستهلك وقت فريقك، يسعدني التواصل لبحث أفضل الحلول.</p>
           </div>
           <div class="cta-actions">
             <a class="btn btn-primary" href="mailto:asbany103@gmail.com"><i class="fa-regular fa-envelope"></i> Email</a>
@@ -569,9 +585,7 @@
     </div>
   </footer>
 
-  <!-- ========================================== -->
-  <!-- MODAL: KROKETT ASSISTANT WORKFLOW CANVAS -->
-  <!-- ========================================== -->
+  <!-- MODAL SYSTEM -->
   <div id="krokett-modal" class="modal">
     <div class="modal-wrapper">
       <span class="close-btn" onclick="closeModal('krokett-modal')">&times;</span>
@@ -592,30 +606,10 @@
     </div>
   </div>
 
-  <!-- ========================================== -->
-  <!-- TEMPLATE MODAL: FOR FUTURE PROJECTS       -->
-  <!-- (Uncomment and duplicate for Project 2, 3) -->
-  <!-- ========================================== -->
-  <!--
-  <div id="futureproject-modal" class="modal">
-    <div class="modal-wrapper">
-      <span class="close-btn" onclick="closeModal('futureproject-modal')">&times;</span>
-      <div class="modal-tabs">
-        <button class="tab-btn active" onclick="switchCanvas('future-img', 'assets/projects/futureproject/full.png', 'المخطط الشامل للمشروع', 'future-caption', this)">🌐 المخطط الكامل</button>
-      </div>
-      <div class="image-container">
-        <img id="future-img" src="assets/projects/futureproject/full.png" alt="Workflow Blueprint">
-      </div>
-      <div id="future-caption" class="caption">المخطط الهيكلي الشامل</div>
-    </div>
-  </div>
-  -->
-
-  <!-- SCRIPT FOR MODALS & TAB SWITCHING -->
   <script>
     function openModal(modalId) {
       document.getElementById(modalId).style.display = "block";
-      document.body.style.overflow = "hidden"; // Prevent scrolling when modal is open
+      document.body.style.overflow = "hidden";
     }
 
     function closeModal(modalId) {
@@ -634,13 +628,26 @@
       btn.classList.add('active');
     }
 
-    // Close modal when clicking outside the container box
     window.onclick = function(event) {
       if (event.target.classList.contains('modal')) {
         event.target.style.display = "none";
         document.body.style.overflow = "auto";
       }
     };
+
+    // Language Toggle Function
+    let currentLang = 'ar';
+    function toggleLanguage() {
+      currentLang = currentLang === 'ar' ? 'en' : 'ar';
+      document.documentElement.setAttribute('lang', currentLang);
+      document.documentElement.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+      
+      document.getElementById('lang-text').innerText = currentLang === 'ar' ? 'EN' : 'عربي';
+
+      document.querySelectorAll('[data-ar]').forEach(el => {
+        el.innerHTML = el.getAttribute(`data-${currentLang}`);
+      });
+    }
   </script>
 </body>
 </html>
